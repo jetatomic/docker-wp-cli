@@ -10,6 +10,10 @@ RUN apt-get update && apt-get install -y wget libpng12-dev libjpeg-dev mysql-cli
 RUN curl -o /bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	&& chmod +x /bin/wp \
 	&& wp --info --allow-root
+	
+# Add WP Plugins
+RUN wp plugin install w3-total-cache contact-form-7 --activate
+	&& wp plugin install wp-mail-smtp wp-pgp-encrypted-emails
 
 # Cleanup
 RUN apt-get clean
