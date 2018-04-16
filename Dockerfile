@@ -14,8 +14,8 @@ COPY wp-su.sh /bin/wp
 RUN chmod +x /bin/wp-cli.phar /bin/wp
 	
 # Add WP Plugins
-RUN cd /var/www/html/ && wp plugin install w3-total-cache contact-form-7 --activate \
-	&& wp plugin install wp-mail-smtp wp-pgp-encrypted-emails
+RUN wp plugin install w3-total-cache contact-form-7 --activate --path=`/var/www/html` \
+	&& wp plugin install wp-mail-smtp wp-pgp-encrypted-emails --path=`/var/www/html`
 
 # Cleanup
 RUN apt-get clean
