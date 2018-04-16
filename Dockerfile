@@ -22,10 +22,10 @@ RUN chmod +x /bin/wp-cli.phar /bin/wp
 #	&& wp plugin install wp-mail-smtp wp-pgp-encrypted-emails --path=`/var/www/html`
 
 # Upload Snapshot plugin
-RUN mkdir /var/www/html/wp-content \
-	&& mkdir /var/www/html/wp-content/plugins
-COPY snapshot.tar.gz /var/www/html/wp-content/plugins \
-	&& tar -xvzf /var/www/html/wp-content/plugins/snapshot.tar.gz \
+#RUN mkdir /var/www/html/wp-content \
+#	&& mkdir /var/www/html/wp-content/plugins
+COPY snapshot.tar.gz /var/www/html/wp-content/plugins
+RUN tar -xvzf /var/www/html/wp-content/plugins/snapshot.tar.gz \
 	&& rm  /var/www/html/wp-content/plugins/snapshot.tar.gz
 
 # Cleanup
