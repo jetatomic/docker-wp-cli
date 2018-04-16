@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y wget libpng12-dev libjpeg-dev mysql-cli
 # Add WP-CLI
 RUN curl -o /bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	&& chmod +x /bin/wp \
-&& wp --info --allow-root
+	&& wp --info --allow-root
 
 # Cleanup
 RUN apt-get clean
