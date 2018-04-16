@@ -2,7 +2,7 @@ FROM wordpress:latest
 
 # install PHP extensions
 # zlibc zlib1g 
-RUN apt-get update && apt-get install -y wget libjpeg-dev mysql-client zlib1g-dev libpng12-dev nano less \
+RUN apt-get update && apt-get install -y wget libjpeg-dev mysql-client zlib1g-dev libpng-dev nano less \
 	&& docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
 	&& docker-php-ext-install gd mysqli zip
 
