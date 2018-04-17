@@ -3,7 +3,6 @@ FROM wordpress:latest
 # install PHP extensions
 # zlibc zlib1g 
 RUN apt-get update && apt-get install -y \
-	wget \
 	libjpeg-dev \
 	zlib1g-dev \
 	libpng-dev \
@@ -13,13 +12,18 @@ RUN apt-get update && apt-get install -y \
 	&& docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
 	&& docker-php-ext-install gd mysqli zip
 
-COPY php-uploads.ini /usr/local/etc/php/conf.d/uploads.ini \ # Change PHP Upload config
-	&& snapshot.tar.gz /var/www/html/wp-content/plugins/snapshot.tar.gz # WPMUDEV Snapshot
+# PHP Upload config
+COPY php-uploads.ini /usr/local/etc/php/conf.d/uploads.ini
+
+# WPMUDEV Snapshot
+COPY snapshot.tar.gz /var/www/html/wp-content/plugins/snapshot.tar.gz 
+
+#WP Plugins
 RUN cd /var/www/html/wp-content/plugins \
-	&& wget https://downloads.wordpress.org/plugin/w3-total-cache.latest-stable.zip
-	&& wget https://downloads.wordpress.org/plugin/contact-form-7.latest-stable.zip
-	&& wget https://downloads.wordpress.org/plugin/wp-mail-smtp.latest-stable.zip
-	&& wget https://downloads.wordpress.org/plugin/wp-pgp-encrypted-emails.latest-stable.zip
+	&& curl -O https://downloads.wordpress.org/plugin/w3-total-cache.latest-stable.zip
+	&& curl -O https://downloads.wordpress.org/plugin/contact-form-7.latest-stable.zip
+	&& curl -O https://downloads.wordpress.org/plugin/wp-mail-smtp.latest-stable.zip
+	&& curl -O https://downloads.wordpress.org/plugin/wp-pgp-encrypted-emails.latest-stable.zip
 
 # Add WP-CLI 
 RUN curl -o /bin/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
