@@ -20,9 +20,9 @@ COPY snapshot.tar.gz /var/www/html/wp-content/plugins/snapshot.tar.gz
 
 #WP Plugins
 RUN cd /var/www/html/wp-content/plugins \
-	&& curl -O https://downloads.wordpress.org/plugin/w3-total-cache.latest-stable.zip
-	&& curl -O https://downloads.wordpress.org/plugin/contact-form-7.latest-stable.zip
-	&& curl -O https://downloads.wordpress.org/plugin/wp-mail-smtp.latest-stable.zip
+	&& curl -O https://downloads.wordpress.org/plugin/w3-total-cache.latest-stable.zip \
+	&& curl -O https://downloads.wordpress.org/plugin/contact-form-7.latest-stable.zip \
+	&& curl -O https://downloads.wordpress.org/plugin/wp-mail-smtp.latest-stable.zip \
 	&& curl -O https://downloads.wordpress.org/plugin/wp-pgp-encrypted-emails.latest-stable.zip
 
 # Add WP-CLI 
